@@ -21,6 +21,23 @@ class ViewController: UIViewController {
     @IBAction func askButtonPressed(_ sender: UIButton) {
         imageView.image = ballImages.randomElement()!
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.becomeFirstResponder() // To get shake gesture
+    }
+    
+    override var canBecomeFirstResponder: Bool {
+        get {
+            return true
+        }
+    }
+ 
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            imageView.image = ballImages.randomElement()!
+        }
+    }
 
 }
 
